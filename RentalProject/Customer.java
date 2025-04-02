@@ -1,13 +1,13 @@
 public class Customer {
-    private int customerId;
+    private String customerId;
     private String name;
 
-    public Customer(int customerId, String name) {
+    public Customer(String customerId, String name) {
         this.customerId = customerId;
         this.name = name;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
     	return customerId;
     }
 

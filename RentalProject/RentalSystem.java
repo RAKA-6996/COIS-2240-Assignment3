@@ -13,6 +13,19 @@ public class RentalSystem {
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
 
+    private static final String VEHICLES_FILE = "vehicles.txt";
+    private static final String CUSTOMERS_FILE = "customers.txt";
+    private static final String RECORDS_FILE = "rental_records.txt";
+
+    private RentalSystem() {}
+
+    public static RentalSystem getInstance() {
+        if (instance == null) {
+            instance = new RentalSystem();
+        }
+        return instance;
+    }
+
     public boolean addVehicle(Vehicle vehicle) {
         if (findVehicleByPlate(vehicle.getLicensePlate()) != null) {
             System.out.println("Error: Vehicle with plate " + vehicle.getLicensePlate() + " already exists.");
@@ -25,8 +38,8 @@ public class RentalSystem {
     }
 
     public boolean addCustomer(Customer customer) {
-        if (findCustomerById(customer.getId()) != null) {
-            System.out.println("Error: Customer with ID " + customer.getId() + " already exists.");
+        if (findCustomerById(customer.getCustomerId()) != null) {
+            System.out.println("Error: Customer with ID " + customer.getCustomerId() + " already exists.");
             return false;
         }
         customers.add(customer);
@@ -144,7 +157,7 @@ public class RentalSystem {
     
     public Customer findCustomerById(String id) {
         for (Customer c : customers)
-            if (c.getCustomerId() == Integer.parseInt(id))
+            if (c.getCustomerId() == id)
                 return c;
         return null;
     }
