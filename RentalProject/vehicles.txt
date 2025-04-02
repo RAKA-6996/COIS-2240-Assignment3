@@ -1,0 +1,1 @@
+Car, RAKA-6996, Nissan, Gtr, 2019, AVAILABLE,4
