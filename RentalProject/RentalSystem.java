@@ -13,27 +13,26 @@ public class RentalSystem {
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
 
-    private static final String VEHICLES_FILE = "vehicles.txt";
-    private static final String CUSTOMERS_FILE = "customers.txt";
-    private static final String RECORDS_FILE = "rental_records.txt";
-
-    private RentalSystem() {}
-
-    public static RentalSystem getInstance(){
-        if(instance == null){
-            instance = new RentalSystem();
+    public boolean addVehicle(Vehicle vehicle) {
+        if (findVehicleByPlate(vehicle.getLicensePlate()) != null) {
+            System.out.println("Error: Vehicle with plate " + vehicle.getLicensePlate() + " already exists.");
+            return false; 
         }
-        return instance;
-    }
-
-    public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
-        saveVehicle(vehicle);
+        saveVehicle(vehicle); 
+        System.out.println("Vehicle added successfully.");
+        return true;
     }
 
-    public void addCustomer(Customer customer) {
+    public boolean addCustomer(Customer customer) {
+        if (findCustomerById(customer.getId()) != null) {
+            System.out.println("Error: Customer with ID " + customer.getId() + " already exists.");
+            return false;
+        }
         customers.add(customer);
-        saveCustomer(customer);
+        saveCustomer(customer);  
+        System.out.println("Customer added successfully.");
+        return true;
     }
 
     public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
