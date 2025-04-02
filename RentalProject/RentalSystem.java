@@ -103,7 +103,7 @@ public class RentalSystem {
 
     private void saveCustomer(Customer customer) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CUSTOMERS_FILE, true))) {
-            writer.write(String.format("%d,%s",
+            writer.write(String.format("%s,%s",
                 customer.getCustomerId(),
                 customer.getCustomerName()));
             writer.newLine();
@@ -114,7 +114,7 @@ public class RentalSystem {
 
     private void saveRecord(RentalRecord record) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECORDS_FILE, true))) {
-            writer.write(String.format("%s,%d,%s,%s,%.2f,%s",
+            writer.write(String.format("%s,%s,%s,%.2f,%s",
                 record.getVehicle().getLicensePlate(),
                 record.getCustomer().getCustomerId(),
                 record.getDate(),
@@ -195,9 +195,9 @@ public class RentalSystem {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 6) {
+                if (parts.length == 5) {
                     String plate = parts[0].trim();
-                    int customerId = Integer.parseInt(parts[1].trim());
+                    String customerId = parts[1].trim();
                     LocalDate date = LocalDate.parse(parts[2].trim());
                     double amount = Double.parseDouble(parts[3].trim());
                     String transactionType = parts[4].trim();
@@ -217,12 +217,16 @@ public class RentalSystem {
     }
 
     public void displayVehicles(boolean onlyAvailable) {
-    	System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
-    	System.out.println("---------------------------------------------------------------------------------");
-    	 
+        System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
+        System.out.println("---------------------------------------------------------------------------------");
+         
         for (Vehicle v : vehicles) {
             if (!onlyAvailable || v.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
-                System.out.println("|     " + (v instanceof Car ? "Car          " : "Motorcycle   ") + "|\t" + v.getLicensePlate() + "\t|\t" + v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
+                String type = (v instanceof Car) ? "Car" : 
+                             (v instanceof Motorcycle) ? "Motorcycle" :
+                             (v instanceof Truck) ? "Truck" : "Unknown";
+                System.out.println("|     " + type + "          |\t" + v.getLicensePlate() + "\t|\t" + 
+                    v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
             }
         }
         System.out.println();
@@ -251,7 +255,7 @@ public class RentalSystem {
     
     public Customer findCustomerById(String id) {
         for (Customer c : customers)
-            if (c.getCustomerId() == id)
+            if (c.getCustomerId().equals(id))
                 return c;
         return null;
     }
