@@ -7,12 +7,26 @@ public class RentalSystem {
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
 
-    public void addVehicle(Vehicle vehicle) {
+    public boolean addVehicle(Vehicle vehicle) {
+        if (findVehicleByPlate(vehicle.getLicensePlate()) != null) {
+            System.out.println("Error: Vehicle with plate " + vehicle.getLicensePlate() + " already exists.");
+            return false; 
+        }
         vehicles.add(vehicle);
+        saveVehicle(vehicle); 
+        System.out.println("Vehicle added successfully.");
+        return true;
     }
 
-    public void addCustomer(Customer customer) {
+    public boolean addCustomer(Customer customer) {
+        if (findCustomerById(customer.getId()) != null) {
+            System.out.println("Error: Customer with ID " + customer.getId() + " already exists.");
+            return false;
+        }
         customers.add(customer);
+        saveCustomer(customer);  
+        System.out.println("Customer added successfully.");
+        return true;
     }
 
     public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
