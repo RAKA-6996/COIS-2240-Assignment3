@@ -1,1 +1,2 @@
 Car, RAKA-6996, Nissan, Gtr, 2019, AVAILABLE,4
+Motorcycle, DACF-998, Harley, Davidson, 2007, AVAILABLE,false
