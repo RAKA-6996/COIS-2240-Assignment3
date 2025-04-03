@@ -55,6 +55,7 @@ public class RentalSystem {
     public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
             vehicle.setStatus(Vehicle.VehicleStatus.RENTED);
+            updateVehiclesFile();
             RentalRecord record = new RentalRecord(vehicle, customer, date, amount, "RENT");
             rentalHistory.addRecord(record);
             saveRecord(record);
@@ -69,6 +70,7 @@ public class RentalSystem {
     public void returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.RENTED) {
             vehicle.setStatus(Vehicle.VehicleStatus.AVAILABLE);
+            updateVehiclesFile();
             RentalRecord record = new RentalRecord(vehicle, customer, date, extraFees, "RETURN");
             rentalHistory.addRecord(record);
             saveRecord(record);
@@ -118,7 +120,7 @@ public class RentalSystem {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECORDS_FILE, true))) {
             writer.write(String.format("%s,%s,%s,%.2f,%s",
                 record.getVehicle().getLicensePlate(),
-                record.getCustomer().getCustomerId(),
+                record.getCustomer().getCustomerId(), 
                 record.getDate(),
                 record.getAmount(),
                 record.getTransactionType()));
@@ -261,4 +263,30 @@ public class RentalSystem {
                 return c;
         return null;
     }
+
+    private void updateVehiclesFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(VEHICLES_FILE, false))) {
+            for (Vehicle v : vehicles) {
+                String type = "Unknown";
+                String extra = "";
+    
+                if (v instanceof Car) {
+                    type = "Car";
+                    extra = "," + ((Car) v).getNumSeats();
+                } else if (v instanceof Motorcycle) {
+                    type = "Motorcycle";
+                    extra = "," + ((Motorcycle) v).hasSidecar();
+                } else if (v instanceof Truck) {
+                    type = "Truck";
+                    extra = "," + ((Truck) v).getCargoCapacity();
+                }
+    
+                writer.write(type + "," + v.getLicensePlate() + "," + v.getMake() + "," + v.getModel() + "," + v.getYear() + "," + v.getStatus() + extra);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error updating vehicles file: " + e.getMessage());
+        }
+    }
+    
 }
