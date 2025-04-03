@@ -15,9 +15,9 @@ public class RentalSystem {
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
 
-    private static final String VEHICLES_FILE = "vehicles.txt";
-    private static final String CUSTOMERS_FILE = "customers.txt";
-    private static final String RECORDS_FILE = "rental_records.txt";
+    private static final String VEHICLES_FILE = "src/vehicles.txt";
+    private static final String CUSTOMERS_FILE = "src/customers.txt";
+    private static final String RECORDS_FILE = "src/rental_records.txt";
 
     private RentalSystem() {
         loadData();
