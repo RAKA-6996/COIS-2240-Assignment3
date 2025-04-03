@@ -167,9 +167,17 @@ public class RentalSystem {
                         default:
                             continue;
                     }
-                    vehicle.setLicensePlate(plate);
-                    vehicle.setStatus(status);
-                    vehicles.add(vehicle);
+                    
+                    // Task 2-1 Try and catch for invalid license plate
+                    try {
+                    	vehicle.setLicensePlate(plate);
+                        vehicle.setStatus(status);
+                        vehicles.add(vehicle);
+                    }
+                    catch(IllegalArgumentException e) {
+                    	System.out.println("Vehicle not added from loadVehicles() method.");
+                    }
+                    
                 }
             }
         }

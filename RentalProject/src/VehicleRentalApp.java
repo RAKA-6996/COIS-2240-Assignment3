@@ -28,6 +28,7 @@ public class VehicleRentalApp {
                     scanner.nextLine();
 
                     Vehicle vehicle;
+                    
                     if (type == 1) {
                         System.out.print("Enter number of seats: ");
                         int seats = scanner.nextInt();
@@ -44,14 +45,21 @@ public class VehicleRentalApp {
 		            	vehicle = null;
 		            }
                     
-                    if (vehicle != null){
-	                    vehicle.setLicensePlate(plate);
-	                    rentalSystem.addVehicle(vehicle);
-	                    System.out.println("Vehicle added.");
+                    // Task 2-1 Try and catch for invalid license plate
+                    try {
+                        if (vehicle != null) {
+    	                    vehicle.setLicensePlate(plate);
+    	                    rentalSystem.addVehicle(vehicle);
+    	                    System.out.println("Vehicle added.");
+                        }
+                        else {
+    	                    System.out.println("Vehicle not added.");
+                        }
                     }
-                    else {
-	                    System.out.println("Vehicle not added.");
+                    catch(IllegalArgumentException e) {
+                    	System.out.println("Vehicle not added.");
                     }
+                   
                     break;
 
                 case 2:

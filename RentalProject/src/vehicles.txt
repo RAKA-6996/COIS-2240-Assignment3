@@ -1,1 +1,1 @@
-Car, RAKA-6996, Nissan, Gtr, 2019, RENTED,4
+Car, CAR000, Toyota, Camry, 2020, AVAILABLE,5
