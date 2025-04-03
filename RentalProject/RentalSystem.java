@@ -58,6 +58,7 @@ public class RentalSystem {
             RentalRecord record = new RentalRecord(vehicle, customer, date, amount, "RENT");
             rentalHistory.addRecord(record);
             saveRecord(record);
+            saveVehicle(vehicle);
             System.out.println("Vehicle rented to " + customer.getCustomerName());
         }
         else {
@@ -71,6 +72,7 @@ public class RentalSystem {
             RentalRecord record = new RentalRecord(vehicle, customer, date, extraFees, "RETURN");
             rentalHistory.addRecord(record);
             saveRecord(record);
+            saveVehicle(vehicle);
             System.out.println("Vehicle returned by " + customer.getCustomerName());
         }
         else {
@@ -79,7 +81,7 @@ public class RentalSystem {
     }    
 
     private void saveVehicle(Vehicle vehicle){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(VEHICLES_FILE, true))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(VEHICLES_FILE, false))){
             String vehicleType = vehicle instanceof Car ? "Car": vehicle instanceof Motorcycle ? "Motorcycle" : "Truck";
 
             writer.write(String.format("%s, %s, %s, %s, %d, %s", vehicleType, vehicle.getLicensePlate(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), vehicle.getStatus()));
