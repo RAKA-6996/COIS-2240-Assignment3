@@ -105,9 +105,7 @@ public class RentalSystem {
 
     private void saveCustomer(Customer customer) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CUSTOMERS_FILE, true))) {
-            writer.write(String.format("%d,%s",
-                customer.getCustomerId(),
-                customer.getCustomerName()));
+            writer.write(String.format("%s,%s", customer.getCustomerId(), customer.getCustomerName()));
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error saving customer: " + e.getMessage());
@@ -253,7 +251,7 @@ public class RentalSystem {
     
     public Customer findCustomerById(String id) {
         for (Customer c : customers)
-            if (c.getCustomerId() == id)
+        if (c.getCustomerId().equals(id))
                 return c;
         return null;
     }
