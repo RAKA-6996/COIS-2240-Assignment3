@@ -1,10 +1,31 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
+import java.lang.reflect.Field;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 
-class VehicleTest {
+class VehicleRentalTest {
+	
+	private Vehicle vehicle;
+    private Customer customer;
+    private RentalSystem rentalSystem;
 
+	@BeforeEach
+	void setUp() throws Exception {
+        rentalSystem = RentalSystem.getInstance();
+        
+        // Initialize test vehicle and customer
+        vehicle = new Car("Toyota", "Camry", 2020, 5);
+        vehicle.setLicensePlate("TES001");
+        customer = new Customer("CUST001", "Test Customer");
+        
+        // Add to rental system
+        rentalSystem.addVehicle(vehicle);
+        rentalSystem.addCustomer(customer);
+	}
+	
 	@Test
 	void testLicensePlateValidation() {
         // Test valid license plates
@@ -61,6 +82,32 @@ class VehicleTest {
         catch (IllegalArgumentException e) {
             assertTrue(e.getMessage().contains("Invalid license plate."));
         }
+    }
+	
+	@Test
+    void testRentAndReturnVehicle() {
+        // 1. Verify initial availability
+        assertEquals(Vehicle.VehicleStatus.AVAILABLE, vehicle.getStatus());
+
+        // 2. Test successful rent
+        assertTrue(rentalSystem.rentVehicle(vehicle, customer, LocalDate.now(), 100.0),
+            "First rental should succeed");
+        assertEquals(Vehicle.VehicleStatus.RENTED, vehicle.getStatus(),
+            "Status should update to RENTED");
+
+        // 3. Test duplicate rent failure
+        assertFalse(rentalSystem.rentVehicle(vehicle, customer, LocalDate.now(), 100.0),
+            "Second rental attempt should fail");
+
+        // 4. Test successful return
+        assertTrue(rentalSystem.returnVehicle(vehicle, customer, LocalDate.now(), 0.0),
+            "Return should succeed");
+        assertEquals(Vehicle.VehicleStatus.AVAILABLE, vehicle.getStatus(),
+            "Status should revert to AVAILABLE");
+
+        // 5. Test duplicate return failure
+        assertFalse(rentalSystem.returnVehicle(vehicle, customer, LocalDate.now(), 0.0),
+            "Second return attempt should fail");
     }
 
 }

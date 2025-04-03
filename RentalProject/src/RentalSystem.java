@@ -52,7 +52,8 @@ public class RentalSystem {
         return true;
     }
 
-    public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
+    // Task 2-2 Converting rentVehicle method to boolean returning method for JUnit tests
+    public boolean rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
             vehicle.setStatus(Vehicle.VehicleStatus.RENTED);
             updateVehiclesFile();
@@ -61,13 +62,16 @@ public class RentalSystem {
             saveRecord(record);
             saveVehicle(vehicle);
             System.out.println("Vehicle rented to " + customer.getCustomerName());
+            return true;
         }
         else {
             System.out.println("Vehicle is not available for renting.");
+            return false;
         }
     }
 
-    public void returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
+    // Task 2-2 Converting returnVehicle method to boolean returning method for JUnit tests
+    public boolean returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.RENTED) {
             vehicle.setStatus(Vehicle.VehicleStatus.AVAILABLE);
             updateVehiclesFile();
@@ -76,9 +80,11 @@ public class RentalSystem {
             saveRecord(record);
             saveVehicle(vehicle);
             System.out.println("Vehicle returned by " + customer.getCustomerName());
+            return true;
         }
         else {
             System.out.println("Vehicle is not rented.");
+            return false;
         }
     }    
 
