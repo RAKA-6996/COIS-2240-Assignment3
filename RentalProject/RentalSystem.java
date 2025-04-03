@@ -116,7 +116,7 @@ public class RentalSystem {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(RECORDS_FILE, true))) {
             writer.write(String.format("%s,%s,%s,%.2f,%s",
                 record.getVehicle().getLicensePlate(),
-                record.getCustomer().getCustomerId(), 
+                String.valueOf(record.getCustomer().getCustomerId()), 
                 record.getDate(),
                 record.getAmount(),
                 record.getTransactionType()));
