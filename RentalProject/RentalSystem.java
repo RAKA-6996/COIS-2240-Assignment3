@@ -59,6 +59,7 @@ public class RentalSystem {
             RentalRecord record = new RentalRecord(vehicle, customer, date, amount, "RENT");
             rentalHistory.addRecord(record);
             saveRecord(record);
+            saveVehicle(vehicle);
             System.out.println("Vehicle rented to " + customer.getCustomerName());
         }
         else {
@@ -73,6 +74,7 @@ public class RentalSystem {
             RentalRecord record = new RentalRecord(vehicle, customer, date, extraFees, "RETURN");
             rentalHistory.addRecord(record);
             saveRecord(record);
+            saveVehicle(vehicle);
             System.out.println("Vehicle returned by " + customer.getCustomerName());
         }
         else {
@@ -81,7 +83,7 @@ public class RentalSystem {
     }    
 
     private void saveVehicle(Vehicle vehicle){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(VEHICLES_FILE, true))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(VEHICLES_FILE, false))){
             String vehicleType = vehicle instanceof Car ? "Car": vehicle instanceof Motorcycle ? "Motorcycle" : "Truck";
 
             writer.write(String.format("%s, %s, %s, %s, %d, %s", vehicleType, vehicle.getLicensePlate(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), vehicle.getStatus()));
@@ -105,7 +107,9 @@ public class RentalSystem {
 
     private void saveCustomer(Customer customer) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CUSTOMERS_FILE, true))) {
-            writer.write(String.format("%s,%s", customer.getCustomerId(), customer.getCustomerName()));
+            writer.write(String.format("%s,%s",
+                customer.getCustomerId(),
+                customer.getCustomerName()));
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error saving customer: " + e.getMessage());
@@ -195,9 +199,9 @@ public class RentalSystem {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 6) {
+                if (parts.length == 5) {
                     String plate = parts[0].trim();
-                    int customerId = Integer.parseInt(parts[1].trim());
+                    String customerId = parts[1].trim();
                     LocalDate date = LocalDate.parse(parts[2].trim());
                     double amount = Double.parseDouble(parts[3].trim());
                     String transactionType = parts[4].trim();
@@ -217,12 +221,16 @@ public class RentalSystem {
     }
 
     public void displayVehicles(boolean onlyAvailable) {
-    	System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
-    	System.out.println("---------------------------------------------------------------------------------");
-    	 
+        System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
+        System.out.println("---------------------------------------------------------------------------------");
+         
         for (Vehicle v : vehicles) {
             if (!onlyAvailable || v.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
-                System.out.println("|     " + (v instanceof Car ? "Car          " : "Motorcycle   ") + "|\t" + v.getLicensePlate() + "\t|\t" + v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
+                String type = (v instanceof Car) ? "Car" : 
+                             (v instanceof Motorcycle) ? "Motorcycle" :
+                             (v instanceof Truck) ? "Truck" : "Unknown";
+                System.out.println("|     " + type + "          |\t" + v.getLicensePlate() + "\t|\t" + 
+                    v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
             }
         }
         System.out.println();
@@ -251,7 +259,7 @@ public class RentalSystem {
     
     public Customer findCustomerById(String id) {
         for (Customer c : customers)
-        if (c.getCustomerId().equals(id))
+            if (c.getCustomerId().equals(id))
                 return c;
         return null;
     }
