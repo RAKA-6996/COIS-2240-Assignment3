@@ -1,2 +1,5 @@
-Car, RAKA-6996, Nissan, Gtr, 2019, AVAILABLE,4
-Motorcycle, DACF-998, Harley, Davidson, 2007, AVAILABLE,false
+Car,RAKA-6996,Nissan,Gtr,2019,AVAILABLE,4
+Motorcycle,DACF-998,Harley,Davidson,2007,AVAILABLE,false
+Car,AAA111,Toyota,Corolla,2019,RENTED,5
+Car,BBB222,Honda,Civic,2021,RENTED,5
+Car,CCC111,Ford,Focus,2024,RENTED,5

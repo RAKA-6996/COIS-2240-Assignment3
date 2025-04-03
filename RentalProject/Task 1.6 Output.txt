@@ -1,0 +1,271 @@
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+2
+Enter customer ID: 001
+Enter name: George
+Customer added successfully.
+Customer added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+2
+Enter customer ID: 002
+Enter name: Anne
+Customer added successfully.
+Customer added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: Car
+  2: Motorcycle
+  3: Truck
+1
+Enter license plate: AAA111
+Enter make: Toyota
+Enter model: Corolla
+Enter year: 2019
+Enter number of seats: 5
+Vehicle added successfully.
+Vehicle added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: Car
+  2: Motorcycle
+  3: Truck
+1
+Enter license plate: BBB222
+Enter make: Honda
+Enter model: Civic
+Enter year: 2021
+Enter number of seats: 5
+Vehicle added successfully.
+Vehicle added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: Car
+  2: Motorcycle
+  3: Truck
+1
+Enter license plate: CCC111
+Enter make: Ford      
+Enter model: Focus
+Enter year: 2024
+Enter number of seats: 5
+Vehicle added successfully.
+Vehicle added.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+|     Car          |    AAA111  |       Toyota  |       Corolla |       2019    |
+|     Car          |    BBB222  |       Honda   |       Civic   |       2021    |
+|     Car          |    CCC111  |       Ford    |       Focus   |       2024    |
+
+Enter license plate: AAA111
+Registered Customers:
+  Customer ID: 1234 | Name: malay
+  Customer ID: 001 | Name: George
+  Customer ID: 002 | Name: Anne
+Enter customer ID: 001
+Enter rental amount: 50
+Vehicle rented to George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+|     Car          |    BBB222  |       Honda   |       Civic   |       2021    |
+|     Car          |    CCC111  |       Ford    |       Focus   |       2024    |
+
+Enter license plate: CCC111
+Registered Customers:
+  Customer ID: 1234 | Name: malay
+  Customer ID: 001 | Name: George
+  Customer ID: 002 | Name: Anne
+Enter customer ID: 001
+Enter rental amount: 60
+Vehicle rented to George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+|     Car          |    BBB222  |       Honda   |       Civic   |       2021    |
+
+Enter license plate: BBB222
+Registered Customers:
+  Customer ID: 1234 | Name: malay
+  Customer ID: 001 | Name: George
+  Customer ID: 002 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 55
+Vehicle rented to Anne
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+
+Enter license plate: CCC111
+Registered Customers:
+  Customer ID: 1234 | Name: malay
+  Customer ID: 001 | Name: George
+  Customer ID: 002 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 40
+Vehicle is not available for renting.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+4
+List of Vehicles:
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+|     Car          |    AAA111  |       Toyota  |       Corolla |       2019    |
+|     Car          |    BBB222  |       Honda   |       Civic   |       2021    |
+|     Car          |    CCC111  |       Ford    |       Focus   |       2024    |
+
+Enter license plate: CCC111
+Registered Customers:
+  Customer ID: 1234 | Name: malay
+  Customer ID: 001 | Name: George
+  Customer ID: 002 | Name: Anne
+Enter customer ID: 001
+Enter return fees: 0
+Vehicle returned by George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Available Vehicles:
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+|     Car          |    CCC111  |       Ford    |       Focus   |       2024    |
+
+Enter license plate: CCC111
+Registered Customers:
+  Customer ID: 1234 | Name: malay
+  Customer ID: 001 | Name: George
+  Customer ID: 002 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 70
+Vehicle rented to Anne
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+5
+|     Type         |    Plate   |       Make    |       Model   |       Year    |
+---------------------------------------------------------------------------------
+|     Car          |    RAKA-6996       |       Nissan  |       Gtr     |       2019    |
+|     Motorcycle   |    DACF-998        |       Harley  |       Davidson        |       2007    |
+
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+6
+Rental History:
+RENT | Plate: AAA111 | Customer: George | Date: 2025-04-02 | Amount: $50.0
+RENT | Plate: CCC111 | Customer: George | Date: 2025-04-02 | Amount: $60.0
+RENT | Plate: BBB222 | Customer: Anne | Date: 2025-04-02 | Amount: $55.0
+RETURN | Plate: CCC111 | Customer: George | Date: 2025-04-02 | Amount: $0.0
+RENT | Plate: CCC111 | Customer: Anne | Date: 2025-04-02 | Amount: $70.0
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+7
