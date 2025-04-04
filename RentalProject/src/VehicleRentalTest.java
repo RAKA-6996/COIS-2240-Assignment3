@@ -18,8 +18,8 @@ class VehicleRentalTest {
         
         // Initialize test vehicle and customer
         vehicle = new Car("Toyota", "Camry", 2020, 5);
-        vehicle.setLicensePlate("TES001");
-        customer = new Customer("CUST001", "Test Customer");
+        vehicle.setLicensePlate("TTT001");
+        customer = new Customer("CCCT001", "Test Customer");
         
         // Add to rental system
         rentalSystem.addVehicle(vehicle);
@@ -108,6 +108,32 @@ class VehicleRentalTest {
         // 5. Test duplicate return failure
         assertFalse(rentalSystem.returnVehicle(vehicle, customer, LocalDate.now(), 0.0),
             "Second return attempt should fail");
+    }
+	
+	@Test
+    void testSingletonRentalSystem() throws Exception {
+		try {
+	        // Validate private constructor using reflection
+	        Constructor<RentalSystem> constructor = RentalSystem.class.getDeclaredConstructor();
+	        int modifiers = constructor.getModifiers();
+	        
+	        assertEquals(Modifier.PRIVATE, modifiers, 
+	            "Constructor should be private to enforce singleton pattern");
+	
+	        // Make constructor accessible for inspection (this won't create instance)
+	        constructor.setAccessible(true);
+	        
+	        // Validate singleton instance behavior
+	        RentalSystem instance1 = RentalSystem.getInstance();
+	        assertNotNull(instance1, "Singleton instance should not be null");
+	        
+	        RentalSystem instance2 = RentalSystem.getInstance();
+	        assertTrue(instance1 == instance2, 
+	                "Both instances should be the same object");
+	        
+		} catch (NoSuchMethodException e) {
+            fail("RentalSystem should have a no-arg constructor");
+        }
     }
 
 }
