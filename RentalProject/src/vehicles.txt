@@ -1,1 +1,2 @@
-Car, TTT001, Toyota, Camry, 2020, AVAILABLE,5
+Motorcycle,WER345,Qwqw,Qwqw,1212,AVAILABLE,false
+Car,QWE231,Asas,Asas,1234,AVAILABLE,3

@@ -29,6 +29,19 @@ public class RentalSystem {
         }
         return instance;
     }
+    
+    // Created for JavaFX
+    public List<Vehicle> getVehicles() {
+    	return vehicles;
+    }
+    
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public RentalHistory getRentalHistory() {
+        return rentalHistory;
+    }
 
     public boolean addVehicle(Vehicle vehicle) {
         if (findVehicleByPlate(vehicle.getLicensePlate()) != null) {
@@ -37,6 +50,7 @@ public class RentalSystem {
         }
         vehicles.add(vehicle);
         saveVehicle(vehicle); 
+        updateVehiclesFile();
         System.out.println("Vehicle added successfully.");
         return true;
     }
@@ -61,6 +75,7 @@ public class RentalSystem {
             rentalHistory.addRecord(record);
             saveRecord(record);
             saveVehicle(vehicle);
+            updateVehiclesFile();
             System.out.println("Vehicle rented to " + customer.getCustomerName());
             return true;
         }
@@ -79,6 +94,7 @@ public class RentalSystem {
             rentalHistory.addRecord(record);
             saveRecord(record);
             saveVehicle(vehicle);
+            updateVehiclesFile();
             System.out.println("Vehicle returned by " + customer.getCustomerName());
             return true;
         }
